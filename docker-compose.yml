@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  dxl-service:
+    build: ./dxl-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - billing-service
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8081:8081"
+
+  billing-service:
+    build: ./billing-service
+    ports:
+      - "8082:8082"
