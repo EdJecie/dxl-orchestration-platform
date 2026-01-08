@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class AuthController {
 
@@ -14,6 +15,14 @@ public class AuthController {
         if (token == null || !token.startsWith("Bearer ")) {
             return "INVALID_TOKEN";
         }
-        return "VALID_TOKEN";
+
+        String actualToken = token.substring(7);
+
+        if ("valid-jwt-token".equals(actualToken)) {
+            return "VALID_TOKEN";
+        }
+
+        return "INVALID_TOKEN";
     }
+
 }
